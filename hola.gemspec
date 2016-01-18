@@ -1,22 +1,35 @@
-Gem::Specification.new do |s|
-  s.name               = "hola"
-  s.version            = "0.0.1"
-  s.default_executable = "hola"
+# coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Nick Quaranto"]
-  s.date = %q{2010-04-03}
-  s.description = %q{A simple hello world gem}
-  s.email = %q{nick@quaran.to}
-  s.files = ["Rakefile", "lib/hola.rb", "lib/hola/translator.rb", "bin/hola"]
-  s.test_files = ["test/test_hola.rb"]
-  s.homepage = %q{http://rubygems.org/gems/hola}
-  s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
-  s.summary = %q{Hola!}
+require 'hola/version'
 
-  if s.respond_to? :specification_version then
-    s.specification_version = 3
+Gem::Specification.new do |spec|
+  spec.name          = "hola"
+  spec.version       = Hola::VERSION
+  spec.authors       = ["Nick Quaranto"]
+  spec.email         = %q{nick@quaran.to}
+  spec.description   = %q{A simple hello world gem}
+  spec.summary       = %q{Hola!}
+  spec.homepage      = %q{http://rubygems.org/gems/hola}
+  spec.license       = "UNKNOWN"
+
+  spec.files         = `git ls-files`.split($/)
+  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.require_paths = ["lib"]
+
+  spec.add_development_dependency("rake")
+  spec.add_development_dependency('chandler')
+  spec.add_development_dependency('github_changelog_generator')
+  spec.add_development_dependency('netrc')
+  spec.add_development_dependency('bump')
+  spec.add_development_dependency('github_api')
+  spec.add_development_dependency('test-unit')
+
+  spec.required_rubygems_version = Gem::Requirement.new(">= 0") if spec.respond_to? :required_rubygems_version=
+  if spec.respond_to? :specification_version then
+    spec.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
     else
@@ -24,4 +37,3 @@ Gem::Specification.new do |s|
   else
   end
 end
-
