@@ -15,6 +15,6 @@ class HolaTest < Test::Unit::TestCase
   end
 
   def test_german_hello
-     assert_equal "hallo wel", Hola.hi("german")
+     assert_equal "hallo welt", Hola.hi("german")
   end  
 end
