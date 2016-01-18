@@ -20,7 +20,6 @@ task :default => :test
 
 GitHubChangelogGenerator::RakeTask.new :changelog do |config|
   user, token = Netrc.read["api.github.com"]
-  config.since_tag = 'v0.4.2' 
   config.user = 'dropstream'
   config.token = token
   config.bug_labels = ["bug", 'Bug', 'defect', 'Defect']
@@ -61,7 +60,9 @@ end
 namespace :github do
   task :create_pull_request do
     user, token = Netrc.read["api.github.com"]
-    github = Github.new(oauth_token: token, user: 'dropstream', repo: 'active_cart')
+    spec = Gem::Specification::load(Dir.glob("*.gemspec").first)
+
+    github = Github.new(oauth_token: token, user: 'dropstream', repo: spec.name)
     pull_request = github.pull_requests.create(title: "Release version #{Bump::Bump.current}",
                                                 base: 'master',
                                                 head: 'development')
