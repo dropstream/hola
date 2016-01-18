@@ -51,8 +51,9 @@ namespace :bump do
       desc "Bump #{bump} part of gem version"
     end
 
-    task bump do
+    task bump => 'release:guard_branch' do
       run_bump.call(bump)
+      # Anytime the version is bumped, we update the change log and commit automatically
       Rake::Task['bump:commit'].invoke
     end
   end
@@ -92,7 +93,17 @@ namespace :github do
   end
 end
 
-task 'release:guard_clean' => ['github:create_pull_request', 'github:pull']
+namespace :release do
+  
+  # ensure we are only working on the master branch
+  task :guard_branch do
+    branch_name = %x[git rev-parse --abbrev-ref HEAD].strip
+    fail("Version bumps and releases only happen on [master] branch. The current branch is [#{branch_name}]") unless branch_name.downcase == 'master'
+
+  end
+end
+
+task 'release:guard_clean' => ['release:guard_branch', 'github:create_pull_request', 'github:pull']
 
 # Let bundler's release task do its job, minus the push to Rubygems,
 # and after it completes, use "gem inabox" to publish the gem to our
