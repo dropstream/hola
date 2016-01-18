@@ -1,5 +1,17 @@
 # Change Log
 
+## [Unreleased](https://github.com/dropstream/hola/tree/HEAD)
+
+[Full Changelog](https://github.com/dropstream/hola/compare/v0.0.1.pre.rc...HEAD)
+
+**Closed issues:**
+
+- Add Polish [\#7](https://github.com/dropstream/hola/issues/7)
+
+**Merged pull requests:**
+
+- Release version 0.0.2-rc [\#6](https://github.com/dropstream/hola/pull/6) ([kfalconer](https://github.com/kfalconer))
+
 ## [v0.0.1.pre.rc](https://github.com/dropstream/hola/tree/v0.0.1.pre.rc) (2016-01-18)
 **Implemented enhancements:**
 
