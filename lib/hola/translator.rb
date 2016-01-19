@@ -15,6 +15,8 @@ class Hola::Translator
        "hallo welt"
     when "brazilian portuguese"
        "olá mundo"
+    when "latin"
+      "salve"       
     when "chinese"
       "你好，世界"          
     else

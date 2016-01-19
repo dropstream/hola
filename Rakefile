@@ -29,12 +29,12 @@ end
 
 namespace :bump do
   desc 'Commit version changes'
-  task :commit => :changelog do
-    fail("Version has not been changed from #{Bump::Bump.current}") if system('git diff --exit-code lib/**version.rb')
+  task :commit do
+    #fail("Version has not been changed from #{Bump::Bump.current}") if system('git diff --exit-code lib/**version.rb')
     system('git add --update Gemfile.lock')
     system('git add --update CHANGELOG.md')
     system('git add --update lib/**/version.rb')
-    system("git commit -m 'Version Bump #{Bump::Bump.current}' && git push origin master")
+    system("git commit -m 'Version bump #{Bump::Bump.current}' && git push origin master")
   end
   
   run_bump = lambda do |bump|
@@ -52,8 +52,6 @@ namespace :bump do
 
     task bump => 'release:guard_branch' do
       run_bump.call(bump)
-      # Anytime the version is bumped, we update the change log and commit automatically
-      Rake::Task['bump:commit'].invoke
     end
   end
 end
@@ -103,7 +101,7 @@ namespace :release do
   end
 end
 
-task 'build' => ['release:guard_branch', 'github:create_pull_request']
+task 'build' => ['release:guard_branch', 'github:create_pull_request', 'changelog', 'bump:commit']
 
 # Let bundler's release task do its job, minus the push to Rubygems,
 # and after it completes, use "gem inabox" to publish the gem to our
