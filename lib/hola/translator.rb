@@ -9,6 +9,8 @@ class Hola::Translator
       "hola mundo"
     when "korean"
       "anyoung ha se yo"
+    when "polish"
+      "witaj świecie"      
     when "german"
        "hallo welt"
     when "brazilian portuguese"
