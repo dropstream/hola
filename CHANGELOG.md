@@ -1,5 +1,17 @@
 # Change Log
 
+## [Unreleased](https://github.com/dropstream/hola/tree/HEAD)
+
+[Full Changelog](https://github.com/dropstream/hola/compare/v0.0.2...HEAD)
+
+**Implemented enhancements:**
+
+- Add Latin [\#11](https://github.com/dropstream/hola/issues/11)
+
+**Merged pull requests:**
+
+- Release version 0.0.2-alpha [\#13](https://github.com/dropstream/hola/pull/13) ([kfalconer](https://github.com/kfalconer))
+
 ## [v0.0.2](https://github.com/dropstream/hola/tree/v0.0.2) (2016-01-19)
 [Full Changelog](https://github.com/dropstream/hola/compare/v0.0.1.pre.rc...v0.0.2)
 
