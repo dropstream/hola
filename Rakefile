@@ -6,7 +6,7 @@ require 'bump'
 require 'github_api'
 
 Bundler::GemHelper.install_tasks
-Rake::Task["release"].clear
+
 # Don't push the gem to rubygems
 ENV["gem_push"] = "false" # Utilizes feature in bundler 1.3.0
 
@@ -82,7 +82,8 @@ namespace :github do
 
 
       if status.state == 'failure'
-        fail('Could not continute release Github Status Check failed') 
+        fail("Could not continute release Github Status Check failed. Closing pull request ##{pull_request.number}, please fix status check failures and try again")
+        github.pull_requests.update(number: pull_request.number, state: 'closed', body: 'Pull request closed by automated script.')
       elsif status.state == 'success'
         puts "Repository status check successful, merging pull request ##{pull_request.number}"
         github.pull_requests.merge(number: pull_request.number)
