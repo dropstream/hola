@@ -34,7 +34,7 @@ namespace :bump do
     system('git add --update Gemfile.lock')
     system('git add --update CHANGELOG.md')
     system('git add --update lib/**/version.rb')
-    system("git commit -m '#{Bump::Bump.current}' && git push origin master")
+    system("git commit -m 'Version Bump #{Bump::Bump.current}' && git push origin master")
   end
   
   run_bump = lambda do |bump|
@@ -89,7 +89,7 @@ namespace :github do
         github.pull_requests.merge(number: pull_request.number)
       end
     end
-    # be sure we have latest locally
+    # be sure we have latest locally before building locally
     system('git pull origin')
   end
 end
