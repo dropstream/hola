@@ -36,5 +36,9 @@ class HolaTest < Test::Unit::TestCase
 
   def test_tamil_hello
     assert_equal "Vanakam ulakam", Hola.hi("tamil")
-  end  
+  end 
+  
+  def test_dutch_hello
+    assert_equal "hallo wereld", Hola.hi("dutch")
+  end   
 end
