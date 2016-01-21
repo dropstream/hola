@@ -1,7 +1,20 @@
 # Change Log
 
-## [0.1.0](https://github.com/dropstream/hola/tree/0.1.0) (2016-01-21)
-[Full Changelog](https://github.com/dropstream/hola/compare/v0.0.2.pre.alpha...0.1.0)
+## [0.2.0](https://github.com/dropstream/hola/tree/0.2.0) (2016-01-21)
+[Full Changelog](https://github.com/dropstream/hola/compare/v0.1.0...0.2.0)
+
+**Implemented enhancements:**
+
+- Add Dutch [\#18](https://github.com/dropstream/hola/issues/18)
+- Add Tamil [\#15](https://github.com/dropstream/hola/issues/15)
+
+**Merged pull requests:**
+
+- Release version 0.2.0 [\#19](https://github.com/dropstream/hola/pull/19) ([kfalconer](https://github.com/kfalconer))
+- Master [\#17](https://github.com/dropstream/hola/pull/17) ([kfalconer](https://github.com/kfalconer))
+
+## [v0.1.0](https://github.com/dropstream/hola/tree/v0.1.0) (2016-01-21)
+[Full Changelog](https://github.com/dropstream/hola/compare/v0.0.2.pre.alpha...v0.1.0)
 
 **Merged pull requests:**
 
