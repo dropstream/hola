@@ -1,8 +1,7 @@
 # Change Log
 
-## [Unreleased](https://github.com/dropstream/hola/tree/HEAD)
-
-[Full Changelog](https://github.com/dropstream/hola/compare/v0.0.2...HEAD)
+## [v0.0.2.pre.alpha](https://github.com/dropstream/hola/tree/v0.0.2.pre.alpha) (2016-01-21)
+[Full Changelog](https://github.com/dropstream/hola/compare/v0.0.2...v0.0.2.pre.alpha)
 
 **Implemented enhancements:**
 
