@@ -17,11 +17,17 @@ end
 desc "Run tests"
 task :default => :test
 
+def last_tag_version
+  tag = %x[git describe --abbrev=0 --tags]
+  tag.strip.delete('v')
+end
 
 GitHubChangelogGenerator::RakeTask.new :changelog do |config|
   user, token = Netrc.read["api.github.com"]
   config.user = 'dropstream'
   config.token = token
+  # Put the unreleased changes in the specified release number.
+  config.future_release = Bump::Bump.current if Gem::Version.new(Bump::Bump.current) >= Gem::Version.new(last_tag_version)
   config.bug_labels = ["bug", 'Bug', 'defect', 'Defect']
   config.enhancement_labels = ['enhancement', 'Enhancement', 'feature', 'Feature']
 end
@@ -111,3 +117,4 @@ Rake::Task["release"].enhance do
   puts "pushed pkg/#{spec.name}-#{spec.version}.gem"
   #sh "gem inabox pkg/#{spec.name}-#{spec.version}.gem"
 end
+
