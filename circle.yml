@@ -27,8 +27,8 @@ test:
     - echo 'Testing'
 
 deployment:
-  gem:
-    branch: /v[0-9]+(\.[0-9]+)*(\.|-)*.+/
+  release:
+    tag: /v[0-9]+(\.[0-9]+)*(\.|-)*.+/
     commands:
       - bump set ${CIRCLE_TAG//v} --commit-message [no-ci]
       - rake release
