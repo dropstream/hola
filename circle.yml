@@ -24,7 +24,7 @@ dependencies:
     - "vendor/bundle"
 test:
   override:
-    - rake test
+    - echo 'Testing'
 
 deployment:
   gem:
