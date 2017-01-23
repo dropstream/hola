@@ -16,7 +16,7 @@ end
 
 desc "Run tests"
 task :default => :test
-
+=begin
 def last_tag_version
   tag = %x[git describe --abbrev=0 --tags]
   tag.strip.delete('v')
@@ -29,13 +29,13 @@ def create_pull_request(base, head, title)
   github = Github.new(oauth_token: token, user: 'dropstream', repo: spec.name)
   comparison = github.repos.commits.compare(base: base, head: head)
   if comparison.total_commits == 0
-    puts "There are no pending commits, skipping pull request"
+    puts "There are no pending commits, skipping pull request into [#{base}] from [#{master}]"
   else
     pull_request = github.pull_requests.create(title: title,
                                                 base: base,
                                                 head: head)
     ref = pull_request.head.sha
-    puts "Created pull request ##{pull_request.number} for ref #{pull_request.head.sha[0..6]}"
+    puts "Created pull request ##{pull_request.number} for ref [#{pull_request.head.sha[0..6]}] into [#{base}] from [#{master}]"
 
     print 'Waiting for repository status checks to complete.'
     begin
@@ -118,14 +118,13 @@ namespace :release do
 end
 
 task 'build' => ['release:guard_branch', 'github:create_pull_request_into_master', 'changelog', 'bump:commit']
-
+=end
 # Let bundler's release task do its job, minus the push to Rubygems,
 # and after it completes, use "gem inabox" to publish the gem to our
 # internal gem server.
 Rake::Task["release"].enhance do
   spec = Gem::Specification::load(Dir.glob("*.gemspec").first)
-  puts "pushed pkg/#{spec.name}-#{spec.version}.gem"
-  #sh "gem inabox pkg/#{spec.name}-#{spec.version}.gem"
-  Rake::Task['github:create_pull_request_into_development'].invoke
+
+  sh "gem inabox pkg/#{spec.name}-#{spec.version}.gem"
 end
 

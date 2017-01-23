@@ -1,0 +1,36 @@
+machine:
+  timezone:
+    America/New_York
+  ruby:
+    version: ruby-2.2.3
+  environment:
+    BEAGLE_ENV: test
+  pre:
+    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
+  services:
+    - docker
+checkout:
+  post:
+    - git submodule sync --recursive
+    - git submodule update --recursive --init    
+dependencies:
+  pre:
+    - echo "export rvm_ignore_gemsets_flag=1" >> ~/.rvmrc
+    - gem install bundler
+    - bundle config gems.falconerdevelopment.com $GEM_CREDENTIALS
+  override:
+    - bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
+  cache_directories:
+    - "vendor/bundle"
+test:
+  override:
+    - rake test
+
+deployment:
+  gem:
+    branch: /v[0-9]+(\.[0-9]+)*(\.|-)*.+/
+    commands:
+      - bump set ${CIRCLE_TAG//v} --commit-message [no-ci]
+      - rake release
+  # Build the Docker image as the post test step to ensure
+  # the build will fail if the image can not be built
