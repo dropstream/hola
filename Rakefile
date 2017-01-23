@@ -1,9 +1,5 @@
 require 'rake/testtask'
 require 'bundler'
-require 'netrc'
-require 'github_changelog_generator/task'
-require 'bump'
-require 'github_api'
 
 Bundler::GemHelper.install_tasks
 
