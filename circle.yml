@@ -3,12 +3,6 @@ machine:
     America/New_York
   ruby:
     version: ruby-2.2.3
-  environment:
-    BEAGLE_ENV: test
-  pre:
-    - curl -sSL https://s3.amazonaws.com/circle-downloads/install-circleci-docker.sh | bash -s -- 1.10.0
-  services:
-    - docker
 checkout:
   post:
     - git submodule sync --recursive
@@ -30,7 +24,6 @@ deployment:
   release:
     tag: /v[0-9]+(\.[0-9]+)*(\.|-)*.+/
     commands:
-      - bundle exec bump set ${CIRCLE_TAG//v} --commit-message [no-ci]
-      - bundle exec rake release
+      - ./deploy.sh
   # Build the Docker image as the post test step to ensure
   # the build will fail if the image can not be built
