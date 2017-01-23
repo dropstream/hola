@@ -1,3 +1,3 @@
 class Hola
-  VERSION = "0.3.0-rc4"
+  VERSION = "0.3.0.pre.rc44"
 end
