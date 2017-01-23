@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Prepare git for pushing version bump to
+git config --global push.default simple
 git config --global user.name "Karl Falconer"
 git config --global user.email karl@falconerdevelopment.com
 
