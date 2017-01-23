@@ -24,13 +24,13 @@ dependencies:
     - "vendor/bundle"
 test:
   override:
-    - echo 'Testing'
+    - bundle exec rake test
 
 deployment:
   release:
     tag: /v[0-9]+(\.[0-9]+)*(\.|-)*.+/
     commands:
-      - bump set ${CIRCLE_TAG//v} --commit-message [no-ci]
-      - rake release
+      - bundle exec bump set ${CIRCLE_TAG//v} --commit-message [no-ci]
+      - bundle exec rake release
   # Build the Docker image as the post test step to ensure
   # the build will fail if the image can not be built

@@ -34,14 +34,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency('bump')
   spec.add_development_dependency('github_api')
   spec.add_development_dependency('test-unit')
-
-  spec.required_rubygems_version = Gem::Requirement.new(">= 0") if spec.respond_to? :required_rubygems_version=
-  if spec.respond_to? :specification_version then
-    spec.specification_version = 3
-
-    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-    else
-    end
-  else
-  end
 end
