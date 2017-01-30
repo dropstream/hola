@@ -28,10 +28,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency("rake")
-  spec.add_development_dependency('chandler')
-  spec.add_development_dependency('github_changelog_generator')
-  spec.add_development_dependency('netrc')
-  spec.add_development_dependency('bump')
-  spec.add_development_dependency('github_api')
   spec.add_development_dependency('test-unit')
+  spec.add_development_dependency('geminabox', "~> 0.13.5")
 end
