@@ -15,5 +15,5 @@ git add --update lib/hola/version.rb
 git add --update Gemfile.lock
 git commit -m "version bump [skip ci]"
 #bump set ${CIRCLE_TAG//v} --commit-message "version bump [skip ci]" 
-#bundle exec rake release
+bundle exec rake release
 echo "Deployment complete"
